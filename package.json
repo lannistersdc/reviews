@@ -1,6 +1,6 @@
 {
-  "name": "opentable_navbar",
-  "description": "OpenTable NavBar",
+  "name": "opentable_reviews",
+  "description": "OpenTable Reviews",
   "author": "Jeff Jardine",
   "engines": {
     "node": ">=6.13.0"
