@@ -38,11 +38,9 @@
     "morgan": "^1.9.1",
     "nodemon": "^1.18.10",
     "react": "^16.8.4",
-    "react-autosuggest": "^9.4.3",
-    "react-calendar": "^2.18.1",
-    "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.4",
     "react-overflow-scrolling": "^1.0.0",
+    "react-paginate": "^6.3.0",
     "style-loader": "^0.23.1",
     "webpack-combine-loaders": "^2.0.4"
   }

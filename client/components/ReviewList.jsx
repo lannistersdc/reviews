@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import styles from './ReviewList.module.scss';
 
@@ -20,13 +21,15 @@ export default class TodoList extends React.Component {
       ambienceAvg: 0,
       valueAvg: 0,
       recommendAvg: 0,
-      reviews: []
+      reviews: [],
+      currentPAge: 1,
+      reviewsPerPage: 40
     };
     this.getRestaurantReviews = this.getRestaurantReviews.bind(this);
   }
 
   componentDidMount() {
-    this.getRestaurantReviews(2);
+    this.getRestaurantReviews(5);
   }
 
   getRestaurantReviews(restaurantID) {
@@ -77,6 +80,11 @@ export default class TodoList extends React.Component {
             recommendAvg++;
           }
         }
+        oneStar = 100 * (oneStar / reviewCount);
+        twoStar = 100 * (twoStar / reviewCount);
+        threeStar = 100 * (threeStar / reviewCount);
+        fourStar = 100 * (fourStar / reviewCount);
+        fiveStar = 100 * (fiveStar / reviewCount);
         overallAvg = (overallAvg / this.state.reviews.length).toFixed(1);
         foodAvg = (foodAvg / this.state.reviews.length).toFixed(1);
         serviceAvg = (serviceAvg / this.state.reviews.length).toFixed(1);
@@ -110,38 +118,117 @@ export default class TodoList extends React.Component {
           What {this.state.reviewCount} People Are Saying
         </div>
         <div className={styles.reviewOverview}>
-          <div>
+          <div className={styles.overviewContainer}>
             <div className={styles.overallInfo}>
               Overall ratings and reviews
             </div>
-            <div>
+            <div className={styles.reviewDisclaimer}>
               Reviews can only be made by diners who have eaten at this
               restaurant
             </div>
-            <table>
-              <tr>{this.state.overallAvg} based on recent ratings</tr>
+            <div className={styles.reviewRecent}>
+              {this.state.overallAvg} based on recent ratings
+            </div>
+            <table className={styles.reviewTable}>
               <tr>
-                {this.state.foodAvg} Food {this.state.serviceAvg} Service{' '}
-                {this.state.ambienceAvg} Ambience {this.state.valueAvg} Value
-              </tr>
-              <tr>
-                {this.state.recommendAvg}% of people would recommend it to a
-                friend
+                <td>
+                  {this.state.foodAvg}
+                  <br />
+                  <a>Food</a>
+                </td>
+                <td>
+                  {this.state.serviceAvg}
+                  <br />
+                  <a>Service</a>
+                </td>
+                <td>
+                  {this.state.ambienceAvg}
+                  <br />
+                  <a>Ambience</a>
+                </td>
+                <td>
+                  {this.state.valueAvg}
+                  <br />
+                  <a>Value</a>
+                </td>
               </tr>
             </table>
+            <div className={styles.noiseLevel}>
+              <img src="./icons/noiseMeter.png" height="16px" width="auto" />{' '}
+              <a>Noise</a>{' '}
+              <img src="./icons/blackDot.png" height="2px" width="auto" />{' '}
+              moderate
+            </div>
+            <div className={styles.recommend}>
+              <img src="./icons/thumbsUp.png" height="18px" width="auto" />{' '}
+              <a>{this.state.recommendAvg}% of people</a> would recommend it to
+              a friend
+            </div>
           </div>
-          <div>
-            1 {this.state.oneStar} 2 {this.state.twoStar} 3{' '}
-            {this.state.threeStar} 4 {this.state.fourStar} 5{' '}
-            {this.state.fiveStar}
+          <div className={styles.reviewGraph}>
+            <div className={styles.reviewLine}>
+              <div className={styles.reviewStars}>5</div>
+              <div className={styles.reviewBar}>
+                <div
+                  className={styles.reviewFill}
+                  style={{
+                    width: `${this.state.fiveStar}%`
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.reviewLine}>
+              <div className={styles.reviewStars}>4</div>
+              <div className={styles.reviewBar}>
+                <div
+                  className={styles.reviewFill}
+                  style={{
+                    width: `${this.state.fourStar}%`
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.reviewLine}>
+              <div className={styles.reviewStars}>3</div>
+              <div className={styles.reviewBar}>
+                <div
+                  className={styles.reviewFill}
+                  style={{
+                    width: `${this.state.threeStar}%`
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.reviewLine}>
+              <div className={styles.reviewStars}>2</div>
+              <div className={styles.reviewBar}>
+                <div
+                  className={styles.reviewFill}
+                  style={{
+                    width: `${this.state.twoStar}%`
+                  }}
+                />
+              </div>
+            </div>
+            <div className={styles.reviewLine}>
+              <div className={styles.reviewStars}>1</div>
+              <div className={styles.reviewBar}>
+                <div
+                  className={styles.reviewFill}
+                  style={{
+                    width: `${this.state.oneStar}%`
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
         <table />
-        <table>
+        <div>
           {this.state.reviews.map((review, index) => (
             <ReviewListEntry key={index} review={review} />
           ))}
-        </table>
+        </div>
       </div>
     );
   }

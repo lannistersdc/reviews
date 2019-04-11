@@ -3,20 +3,123 @@
     Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
   font-style: normal;
+  width: 600px;
+  margin-left: 180px;
   .peopleSaying {
     font-weight: 700;
     font-size: 24px;
     line-height: 32px;
     color: #2d333f;
+    padding-bottom: 1rem;
   }
   .reviewOverview {
+    border-top: 1px solid #d8d9db;
+    padding-top: 1rem;
     display: flex;
     flex-wrap: nowrap;
-    .overallInfo {
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 24px;
-      color: #000000;
+    .overviewContainer {
+      margin-right: 1rem;
+      width: 350px;
+      .overallInfo {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #000000;
+        margin-bottom: 0.5rem;
+      }
+      .reviewDisclaimer {
+        font-weight: 400;
+        font-size: 16px;
+        color: #000000;
+        margin-bottom: 0.5rem;
+      }
+      .reviewRecent {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        color: #2d333f;
+        margin-bottom: 0.5rem;
+      }
+      .reviewTable {
+        margin-bottom: 1rem;
+        > tr {
+          > td {
+            font-weight: 500;
+            font-size: 17px;
+            line-height: 21px;
+            color: #000000;
+            text-align: center;
+            padding-right: 5px;
+            padding-left: 5px;
+            > a {
+              font-weight: 400;
+              font-size: 14px;
+              color: #000000;
+            }
+          }
+          > td:not(:last-child) {
+            border-right: 1px solid #d8d9db;
+          }
+        }
+      }
+      .noiseLevel {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #6f737b;
+        margin-bottom: 1rem;
+        > a {
+          margin-left: 1rem;
+          font-weight: 500;
+        }
+      }
+      .noiseLevel:hover {
+        color: #da3743;
+      }
+      .recommend {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #6f737b;
+        > a {
+          font-weight: 500;
+        }
+      }
+      .recommend:hover {
+        color: #da3743;
+      }
+    }
+  }
+  .reviewGraph {
+    margin-top: 2rem;
+    .reviewLine {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 0.5rem;
+      .reviewStars {
+        margin-right: 14px;
+      }
+      .reviewBar {
+        height: 1rem;
+        width: 232px;
+        border: 1px solid #d8d9db;
+        box-sizing: border-box;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        background: transparent;
+        .reviewFill {
+          height: 14px;
+          background: #da3743;
+        }
+      }
+    }
+    .reviewLine:hover {
+      .reviewStars {
+        text-decoration: underline;
+      }
+      .reviewBar {
+        border: 2px solid #da3743;
+      }
     }
   }
 }

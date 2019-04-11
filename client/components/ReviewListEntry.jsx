@@ -14,32 +14,118 @@ const ReviewListEntry = props => {
       }
     }
   }
+  let colorCode = (shortName.charCodeAt(0) + shortName.charCodeAt(1)) % 4;
+  let color;
+  switch (colorCode) {
+    case 0:
+      color = <div className={styles.userShortName0}>{shortName}</div>;
+      break;
+    case 1:
+      color = <div className={styles.userShortName1}>{shortName}</div>;
+      break;
+    case 2:
+      color = <div className={styles.userShortName2}>{shortName}</div>;
+      break;
+    case 3:
+      color = <div className={styles.userShortName3}>{shortName}</div>;
+      break;
+  }
+  let stars;
+  switch (review.overall) {
+    case 1:
+      stars = (
+        <span>
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />
+        </span>
+      );
+      break;
+    case 2:
+      stars = (
+        <span>
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />
+        </span>
+      );
+      break;
+    case 3:
+      stars = (
+        <span>
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />
+        </span>
+      );
+      break;
+    case 4:
+      stars = (
+        <span>
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/greyStar.png" height="16px" width="auto" />
+        </span>
+      );
+      break;
+    case 5:
+      stars = (
+        <span>
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />{' '}
+          <img src="./icons/redStar.png" height="16px" width="auto" />
+        </span>
+      );
+      break;
+  }
   return (
-    <tr className={styles.reviewEntryContainer}>
+    <div className={styles.reviewEntryContainer}>
       <div className={styles.userInfo}>
         {review.vip && <div className={styles.userVIP}>VIP</div>}
-        <div className={styles.userShortName}>{shortName}</div>
+        {color}
         <div className={styles.userLongName}>{review.username}</div>
         <div className={styles.userLocation}>{review.location}</div>
-        <div className={styles.userReviews}>{review.totalReviews} reviews</div>
+        <div className={styles.userReviews}>
+          <img src="./icons/speechBubble.png" height="12px" width="auto" />{' '}
+          {review.totalReviews} reviews
+        </div>
       </div>
       <div className={styles.reviewInfo}>
-        <div>
-          {review.overall} Stars Dined on {review.date}
+        <div className={styles.reviewTotal}>
+          {stars} Dined on {review.date}
         </div>
         <div className={styles.reviewScores}>
-          Overall <span className={styles.scoreNumber}>{review.overall}</span>
-          Food <span className={styles.scoreNumber}>{review.food}</span>
-          Service <span className={styles.scoreNumber}>{review.service}</span>
-          Ambience <span className={styles.scoreNumber}>{review.ambience}</span>
+          Overall <span className={styles.scoreNumber}>{review.overall}</span>{' '}
+          <img src="./icons/blackDot.png" height="2px" width="auto" /> Food{' '}
+          <span className={styles.scoreNumber}>{review.food}</span>{' '}
+          <img src="./icons/blackDot.png" height="2px" width="auto" /> Service{' '}
+          <span className={styles.scoreNumber}>{review.service}</span>{' '}
+          <img src="./icons/blackDot.png" height="2px" width="auto" /> Ambience{' '}
+          <span className={styles.scoreNumber}>{review.ambience}</span>
         </div>
         <div className={styles.reviewBody}>{review.text}</div>
         <div className={styles.reviewButtons}>
-          <button className={styles.reviewButton}>Report</button>
-          <button className={styles.reviewButton}>Helpful</button>
+          <button className={styles.reviewButton}>
+            <img src="./icons/reportFlag.png" height="12px" width="auto" />{' '}
+            Report
+          </button>
+          <button className={styles.reviewButton}>
+            <img src="./icons/helpfulBox.png" height="12px" width="auto" />{' '}
+            Helpful
+          </button>
         </div>
       </div>
-    </tr>
+    </div>
   );
 };
 
