@@ -11,9 +11,69 @@
     line-height: 32px;
     color: #2d333f;
     padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #d8d9db;
+  }
+  .insiderContainer {
+    border: 1px solid #d8d9db;
+    height: 230px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    .infatuation {
+      display: flex;
+      flex-wrap: nowrap;
+      margin-bottom: 1rem;
+      .infatuationTitleAndScore {
+        margin-left: 1rem;
+        .infatuationTitle {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+          color: #2d333f;
+        }
+        .infatuationScore {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+          color: #0c6bed;
+        }
+      }
+    }
+    .insiderBody {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #2d333f;
+      margin-bottom: 1rem;
+    }
+    .insiderDisclaimer {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #6f737b;
+      margin-bottom: 1rem;
+    }
+    .insiderButton {
+      font-family: BrandonText, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol';
+      font-style: normal;
+      float: right;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 24px;
+      background-color: #fff;
+      border: none;
+      color: #2d333f;
+    }
+    .insiderButton:hover {
+      cursor: pointer;
+    }
+    .insiderButton:focus {
+      outline: 0;
+    }
   }
   .reviewOverview {
-    border-top: 1px solid #d8d9db;
     padding-top: 1rem;
     display: flex;
     flex-wrap: nowrap;

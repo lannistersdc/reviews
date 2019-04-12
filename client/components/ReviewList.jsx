@@ -114,6 +114,27 @@ export default class TodoList extends React.Component {
   render() {
     return (
       <div className={styles.reviewListContainer}>
+        <div className={styles.peopleSaying}>What Insiders Are Saying</div>
+        <div className={styles.insiderContainer}>
+          <div className={styles.infatuation}>
+            <img src="./icons/bullHorn.png" height="50px" width="auto" />
+            <div className={styles.infatuationTitleAndScore}>
+              <div className={styles.infatuationTitle}>The Infatuation</div>
+              <div className={styles.infatuationScore}>9.1/10</div>
+            </div>
+          </div>
+          <div className={styles.insiderBody}>
+            Looking for food? Look no further! This is a place that will serve
+            food to you on a plate for a complete dining experience.
+          </div>
+          <div className={styles.insiderDisclaimer}>
+            Ratings 9.0-9.8: If the 8.5-9.0s are the restaurants you’ll frequent
+            for more than just special occasions, the 9.0-9.8s are the all time
+            great restaurants of their city. Restaurants that will be around 20
+            years from now, assuming the Earth is still around.
+          </div>
+          <button className={styles.insiderButton}>Read the full review</button>
+        </div>
         <div className={styles.peopleSaying}>
           What {this.state.reviewCount} People Are Saying
         </div>
