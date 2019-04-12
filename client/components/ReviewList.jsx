@@ -244,7 +244,28 @@ export default class TodoList extends React.Component {
             </div>
           </div>
         </div>
-        <table />
+        <div className={styles.lovedFor}>
+          Loved For{' '}
+          <img src="./icons/infoIcon.png" height="20px" width="auto" />
+        </div>
+        <div className={styles.awardsContainer}>
+          <div className={styles.award}>
+            <img src="./icons/awardTrophy.png" height="18px" width="auto" />
+            <div className={styles.awardNameAndLocation}>
+              <div className={styles.awardName}>Best Restrooms</div>
+              <div className={styles.awardLocation}>Los Angeles</div>
+            </div>
+          </div>
+          <div className={styles.award}>
+            <img src="./icons/awardTrophy.png" height="18px" width="auto" />
+            <div className={styles.awardNameAndLocation}>
+              <div className={styles.awardName}>Most Heart Attacks</div>
+              <div className={styles.awardLocation}>
+                Downtown / South and East LA
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="reviewList">
           {this.state.reviews.map((review, index) => (
             <ReviewListEntry key={index} review={review} />

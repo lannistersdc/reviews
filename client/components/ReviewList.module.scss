@@ -174,12 +174,49 @@
       }
     }
     .reviewLine:hover {
+      cursor: pointer;
       .reviewStars {
         text-decoration: underline;
       }
       .reviewBar {
         border: 2px solid #da3743;
       }
+    }
+  }
+  .lovedFor {
+    margin-top: 1rem;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+  }
+  .awardsContainer {
+    display: flex;
+    .award {
+      display: flex;
+      border: 1px solid #d8d9db;
+      padding: 8px;
+      margin: 8px;
+      .awardNameAndLocation {
+        margin-left: 1rem;
+        .awardName {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          color: #2d333f;
+        }
+        .awardLocation {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 20px;
+          color: #2d333f;
+        }
+      }
+    }
+    .award:hover {
+      border: 2px solid #da3743;
+      padding: 7px;
+      cursor: pointer;
     }
   }
   .reviewList {
