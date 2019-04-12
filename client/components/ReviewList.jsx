@@ -22,8 +22,7 @@ export default class TodoList extends React.Component {
       valueAvg: 0,
       recommendAvg: 0,
       reviews: [],
-      currentPAge: 1,
-      reviewsPerPage: 40
+      pageCount: 1
     };
     this.getRestaurantReviews = this.getRestaurantReviews.bind(this);
   }
@@ -41,7 +40,8 @@ export default class TodoList extends React.Component {
         });
       })
       .then(() => {
-        let reviewCount = this.state.reviews.length;
+        let reviews = this.state.reviews;
+        let reviewCount = reviews.length;
         let overallAvg = 0;
         let oneStar = 0;
         let twoStar = 0;
@@ -53,9 +53,10 @@ export default class TodoList extends React.Component {
         let ambienceAvg = 0;
         let valueAvg = 0;
         let recommendAvg = 0;
-        for (let i = 0; i < this.state.reviews.length; i++) {
-          overallAvg += this.state.reviews[i].overall;
-          switch (this.state.reviews[i].overall) {
+        let pageCount = Math.ceil(reviewCount / 40);
+        for (let i = 0; i < reviews.length; i++) {
+          overallAvg += reviews[i].overall;
+          switch (reviews[i].overall) {
             case 1:
               oneStar++;
               break;
@@ -72,11 +73,11 @@ export default class TodoList extends React.Component {
               fiveStar++;
               break;
           }
-          foodAvg += this.state.reviews[i].food;
-          serviceAvg += this.state.reviews[i].service;
-          ambienceAvg += this.state.reviews[i].ambience;
-          valueAvg += this.state.reviews[i].value;
-          if (this.state.reviews[i].recommend) {
+          foodAvg += reviews[i].food;
+          serviceAvg += reviews[i].service;
+          ambienceAvg += reviews[i].ambience;
+          valueAvg += reviews[i].value;
+          if (reviews[i].recommend) {
             recommendAvg++;
           }
         }
@@ -85,14 +86,12 @@ export default class TodoList extends React.Component {
         threeStar = 100 * (threeStar / reviewCount);
         fourStar = 100 * (fourStar / reviewCount);
         fiveStar = 100 * (fiveStar / reviewCount);
-        overallAvg = (overallAvg / this.state.reviews.length).toFixed(1);
-        foodAvg = (foodAvg / this.state.reviews.length).toFixed(1);
-        serviceAvg = (serviceAvg / this.state.reviews.length).toFixed(1);
-        ambienceAvg = (ambienceAvg / this.state.reviews.length).toFixed(1);
-        valueAvg = (valueAvg / this.state.reviews.length).toFixed(1);
-        recommendAvg = Math.round(
-          100 * (recommendAvg / this.state.reviews.length)
-        );
+        overallAvg = (overallAvg / reviewCount).toFixed(1);
+        foodAvg = (foodAvg / reviewCount).toFixed(1);
+        serviceAvg = (serviceAvg / reviewCount).toFixed(1);
+        ambienceAvg = (ambienceAvg / reviewCount).toFixed(1);
+        valueAvg = (valueAvg / reviewCount).toFixed(1);
+        recommendAvg = Math.round(100 * (recommendAvg / reviewCount));
         this.setState({
           reviewCount,
           overallAvg,
@@ -105,7 +104,8 @@ export default class TodoList extends React.Component {
           serviceAvg,
           ambienceAvg,
           valueAvg,
-          recommendAvg
+          recommendAvg,
+          pageCount
         });
       })
       .catch(err => console.error(err));
@@ -224,10 +224,25 @@ export default class TodoList extends React.Component {
           </div>
         </div>
         <table />
-        <div>
+        <div className="reviewList">
           {this.state.reviews.map((review, index) => (
             <ReviewListEntry key={index} review={review} />
           ))}
+          <ReactPaginate
+            className={styles.paginate}
+            previousLabel={'<'}
+            nextLabel={'>'}
+            breakLabel={'...'}
+            breakClassName={'break-me'}
+            pageCount={this.state.pageCount}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={2}
+            onPageChange={this.handlePageClick}
+            initialPage={1}
+            containerClassName={'pagination'}
+            subContainerClassName={'pages pagination'}
+            activeClassName={'active'}
+          />
         </div>
       </div>
     );
