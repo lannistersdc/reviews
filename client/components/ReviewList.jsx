@@ -29,7 +29,7 @@ export default class TodoList extends React.Component {
   }
 
   componentDidMount() {
-    this.getRestaurantReviews(5);
+    this.getRestaurantReviews(Math.floor(Math.random() * 100) + 1);
   }
 
   getRestaurantReviews(restaurantID) {
