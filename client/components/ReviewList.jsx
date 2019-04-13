@@ -126,7 +126,11 @@ export default class TodoList extends React.Component {
         <div className={styles.peopleSaying}>What Insiders Are Saying</div>
         <div id="jeffs-insiders" className={styles.insiderContainer}>
           <div className={styles.infatuation}>
-            <img src="./icons/bullHorn.png" height="50px" width="auto" />
+            <img
+              src="https://s3-us-west-1.amazonaws.com/review-icons/bullHorn.png"
+              height="50px"
+              width="auto"
+            />
             <div className={styles.infatuationTitleAndScore}>
               <div className={styles.infatuationTitle}>The Infatuation</div>
               <div className={styles.infatuationScore}>9.1/10</div>
@@ -184,13 +188,25 @@ export default class TodoList extends React.Component {
               </tr>
             </table>
             <div className={styles.noiseLevel}>
-              <img src="./icons/noiseMeter.png" height="16px" width="auto" />{' '}
+              <img
+                src="https://s3-us-west-1.amazonaws.com/review-icons/noiseMeter.png"
+                height="16px"
+                width="auto"
+              />{' '}
               <a>Noise</a>{' '}
-              <img src="./icons/blackDot.png" height="2px" width="auto" />{' '}
+              <img
+                src="https://s3-us-west-1.amazonaws.com/review-icons/blackDot.png"
+                height="2px"
+                width="auto"
+              />{' '}
               moderate
             </div>
             <div className={styles.recommend}>
-              <img src="./icons/thumbsUp.png" height="18px" width="auto" />{' '}
+              <img
+                src="https://s3-us-west-1.amazonaws.com/review-icons/thumbsUp.png"
+                height="18px"
+                width="auto"
+              />{' '}
               <a>{this.state.recommendAvg}% of people</a> would recommend it to
               a friend
             </div>
@@ -255,18 +271,30 @@ export default class TodoList extends React.Component {
         </div>
         <div className={styles.lovedFor}>
           Loved For{' '}
-          <img src="./icons/infoIcon.png" height="20px" width="auto" />
+          <img
+            src="https://s3-us-west-1.amazonaws.com/review-icons/infoIcon.png"
+            height="20px"
+            width="auto"
+          />
         </div>
         <div className={styles.awardsContainer}>
           <div className={styles.award}>
-            <img src="./icons/awardTrophy.png" height="18px" width="auto" />
+            <img
+              src="https://s3-us-west-1.amazonaws.com/review-icons/awardTrophy.png"
+              height="18px"
+              width="auto"
+            />
             <div className={styles.awardNameAndLocation}>
               <div className={styles.awardName}>Best Restrooms</div>
               <div className={styles.awardLocation}>Los Angeles</div>
             </div>
           </div>
           <div className={styles.award}>
-            <img src="./icons/awardTrophy.png" height="18px" width="auto" />
+            <img
+              src="https://s3-us-west-1.amazonaws.com/review-icons/awardTrophy.png"
+              height="18px"
+              width="auto"
+            />
             <div className={styles.awardNameAndLocation}>
               <div className={styles.awardName}>Most Heart Attacks</div>
               <div className={styles.awardLocation}>
