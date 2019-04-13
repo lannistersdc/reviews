@@ -34,7 +34,7 @@ export default class TodoList extends React.Component {
 
   getRestaurantReviews(restaurantID) {
     axios
-      .get(`/api/restaurants/${restaurantID}`)
+      .get(`/api/restaurant/${restaurantID}`)
       .then(response => {
         this.setState({
           reviews: response.data
@@ -122,9 +122,9 @@ export default class TodoList extends React.Component {
 
   render() {
     return (
-      <div className={styles.reviewListContainer}>
+      <div id="jeffs-reviews" className={styles.reviewListContainer}>
         <div className={styles.peopleSaying}>What Insiders Are Saying</div>
-        <div className={styles.insiderContainer}>
+        <div id="jeffs-insiders" className={styles.insiderContainer}>
           <div className={styles.infatuation}>
             <img src="./icons/bullHorn.png" height="50px" width="auto" />
             <div className={styles.infatuationTitleAndScore}>
