@@ -195,7 +195,7 @@
     .award {
       display: flex;
       border: 1px solid #d8d9db;
-      padding: 8px;
+      padding: 12px;
       margin: 8px;
       .awardNameAndLocation {
         margin-left: 1rem;
@@ -215,15 +215,16 @@
     }
     .award:hover {
       border: 2px solid #da3743;
-      padding: 7px;
+      padding: 11px;
       cursor: pointer;
     }
   }
   .reviewList {
     .paginate {
-      display: inline-block;
-      padding-left: 15px;
-      padding-right: 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: center;
     }
   }
 }

@@ -54,7 +54,7 @@ export default class TodoList extends React.Component {
         let valueAvg = 0;
         let recommendAvg = 0;
         let pageCount = Math.ceil(reviewCount / 40);
-        for (let i = 0; i < reviews.length; i++) {
+        for (let i = 0; i < 40; i++) {
           overallAvg += reviews[i].overall;
           switch (reviews[i].overall) {
             case 1:
