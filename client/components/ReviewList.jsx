@@ -57,6 +57,9 @@ export default class TodoList extends React.Component {
         let pageCount = Math.ceil(reviewCount / 40);
         let firstForty = [];
         for (let i = 0; i < 40; i++) {
+          if (!reviews[i]) {
+            break;
+          }
           firstForty.push(reviews[i]);
         }
         for (let i = 0; i < reviews.length; i++) {
