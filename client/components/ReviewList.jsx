@@ -22,6 +22,7 @@ export default class TodoList extends React.Component {
       valueAvg: 0,
       recommendAvg: 0,
       reviews: [],
+      firstForty: [],
       pageCount: 1
     };
     this.getRestaurantReviews = this.getRestaurantReviews.bind(this);
@@ -54,7 +55,11 @@ export default class TodoList extends React.Component {
         let valueAvg = 0;
         let recommendAvg = 0;
         let pageCount = Math.ceil(reviewCount / 40);
+        let firstForty = [];
         for (let i = 0; i < 40; i++) {
+          firstForty.push(reviews[i]);
+        }
+        for (let i = 0; i < reviews.length; i++) {
           overallAvg += reviews[i].overall;
           switch (reviews[i].overall) {
             case 1:
@@ -105,6 +110,7 @@ export default class TodoList extends React.Component {
           ambienceAvg,
           valueAvg,
           recommendAvg,
+          firstForty,
           pageCount
         });
       })
@@ -267,7 +273,7 @@ export default class TodoList extends React.Component {
           </div>
         </div>
         <div className="reviewList">
-          {this.state.reviews.map((review, index) => (
+          {this.state.firstForty.map((review, index) => (
             <ReviewListEntry key={index} review={review} />
           ))}
           <ReactPaginate
