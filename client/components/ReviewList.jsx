@@ -154,7 +154,7 @@ export default class TodoList extends React.Component {
           </div>
           <button className={styles.insiderButton}>Read the full review</button>
         </div>
-        <div className={styles.peopleSaying}>
+        <div className={styles.peopleSaying} id="review-list">
           What {this.state.reviewCount} People Are Saying
         </div>
         <div className={styles.reviewOverview}>
