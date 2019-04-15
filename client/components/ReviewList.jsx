@@ -1,14 +1,15 @@
 import React from 'react';
-import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import styles from './ReviewList.module.scss';
 
 import ReviewListEntry from './ReviewListEntry.jsx';
+import ReviewPaginate from './ReviewPaginate.jsx';
 
 export default class TodoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      allReviews: [],
       reviewCount: 0,
       overallAvg: 0,
       oneStar: 0,
@@ -21,28 +22,24 @@ export default class TodoList extends React.Component {
       ambienceAvg: 0,
       valueAvg: 0,
       recommendAvg: 0,
-      reviews: [],
-      firstForty: [],
-      pageCount: 1
+      someReviews: [],
+      pageCount: 1,
+      currentPage: 1
     };
-    this.getRestaurantReviews = this.getRestaurantReviews.bind(this);
+    this.getReviewPage = this.getReviewPage.bind(this);
   }
 
   componentDidMount() {
-    this.getRestaurantReviews(Math.floor(Math.random() * 100) + 1);
-  }
-
-  getRestaurantReviews(restaurantID) {
     axios
-      .get(`/api/restaurant/${restaurantID}`)
+      .get(`/api/restaurant/${Math.floor(Math.random() * 100) + 1}`)
       .then(response => {
         this.setState({
-          reviews: response.data
+          allReviews: response.data
         });
       })
       .then(() => {
-        let reviews = this.state.reviews;
-        let reviewCount = reviews.length;
+        let allReviews = this.state.allReviews;
+        let reviewCount = allReviews.length;
         let overallAvg = 0;
         let oneStar = 0;
         let twoStar = 0;
@@ -55,16 +52,9 @@ export default class TodoList extends React.Component {
         let valueAvg = 0;
         let recommendAvg = 0;
         let pageCount = Math.ceil(reviewCount / 40);
-        let firstForty = [];
-        for (let i = 0; i < 40; i++) {
-          if (!reviews[i]) {
-            break;
-          }
-          firstForty.push(reviews[i]);
-        }
-        for (let i = 0; i < reviews.length; i++) {
-          overallAvg += reviews[i].overall;
-          switch (reviews[i].overall) {
+        for (let i = 0; i < allReviews.length; i++) {
+          overallAvg += allReviews[i].overall;
+          switch (allReviews[i].overall) {
             case 1:
               oneStar++;
               break;
@@ -81,11 +71,11 @@ export default class TodoList extends React.Component {
               fiveStar++;
               break;
           }
-          foodAvg += reviews[i].food;
-          serviceAvg += reviews[i].service;
-          ambienceAvg += reviews[i].ambience;
-          valueAvg += reviews[i].value;
-          if (reviews[i].recommend) {
+          foodAvg += allReviews[i].food;
+          serviceAvg += allReviews[i].service;
+          ambienceAvg += allReviews[i].ambience;
+          valueAvg += allReviews[i].value;
+          if (allReviews[i].recommend) {
             recommendAvg++;
           }
         }
@@ -113,11 +103,27 @@ export default class TodoList extends React.Component {
           ambienceAvg,
           valueAvg,
           recommendAvg,
-          firstForty,
           pageCount
         });
+        this.getReviewPage(1);
       })
       .catch(err => console.error(err));
+  }
+
+  getReviewPage(currentPage) {
+    let someReviews = [];
+    let maxIndex = currentPage * 40;
+    let minIndex = maxIndex - 40;
+    for (let i = minIndex; i < maxIndex; i++) {
+      if (!this.state.allReviews[i]) {
+        break;
+      }
+      someReviews.push(this.state.allReviews[i]);
+    }
+    this.setState({
+      someReviews,
+      currentPage
+    });
   }
 
   render() {
@@ -304,23 +310,15 @@ export default class TodoList extends React.Component {
           </div>
         </div>
         <div className="reviewList">
-          {this.state.firstForty.map((review, index) => (
+          {this.state.someReviews.map((review, index) => (
             <ReviewListEntry key={index} review={review} />
           ))}
-          <ReactPaginate
-            className={styles.paginate}
-            previousLabel={'<'}
-            nextLabel={'>'}
-            breakLabel={'...'}
-            breakClassName={'break-me'}
+        </div>
+        <div className="paginate">
+          <ReviewPaginate
+            getReviewPage={this.getReviewPage}
             pageCount={this.state.pageCount}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={2}
-            onPageChange={this.handlePageClick}
-            initialPage={1}
-            containerClassName={'pagination'}
-            subContainerClassName={'pages pagination'}
-            activeClassName={'active'}
+            currentPage={this.state.currentPage}
           />
         </div>
       </div>
