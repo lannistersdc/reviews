@@ -1,4 +1,6 @@
 .paginationContainer {
+  display: flex;
+  flex-direction: row;
   margin-top: 1rem;
   .prevButton {
     float: left;
@@ -16,7 +18,33 @@
     min-width: 2rem;
     cursor: pointer;
   }
+  .prevButton:hover {
+    border: solid 2px #da3743;
+  }
+  .prevButton:focus {
+    outline: 0;
+  }
+  .inactivePrevButton {
+    float: left;
+    background-color: white;
+    border-radius: 5000px;
+    border: solid 1px #d8d9db;
+    margin-left: calc(0.5rem - 1px);
+    margin-right: calc(0.5rem - 1px);
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    height: 2rem;
+    min-width: 2rem;
+    cursor: pointer;
+  }
+  .inactivePrevButton:focus {
+    outline: 0;
+  }
   .pages {
+    margin: 0 auto;
     .pageButton {
       background-color: white;
       border-radius: 5000px;
@@ -31,6 +59,34 @@
       height: 2rem;
       min-width: 2rem;
       cursor: pointer;
+    }
+    .pageButton:hover {
+      border: solid 2px #da3743;
+    }
+    .pageButton:focus {
+      outline: 0;
+    }
+    .currentPageButton {
+      background-color: white;
+      border-radius: 5000px;
+      border: solid 2px #da3743;
+      margin-left: calc(0.5rem - 1px);
+      margin-right: calc(0.5rem - 1px);
+      display: inline-flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      height: 2rem;
+      min-width: 2rem;
+      cursor: pointer;
+    }
+    .currentPageButton:focus {
+      outline: 0;
+    }
+    .ellipsis {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
     }
   }
   .nextButton {
@@ -48,5 +104,30 @@
     height: 2rem;
     min-width: 2rem;
     cursor: pointer;
+  }
+  .nextButton:hover {
+    border: solid 2px #da3743;
+  }
+  .nextButton:focus {
+    outline: 0;
+  }
+  .inactiveNextButton {
+    float: right;
+    background-color: white;
+    border-radius: 5000px;
+    border: solid 1px #d8d9db;
+    margin-left: calc(0.5rem - 1px);
+    margin-right: calc(0.5rem - 1px);
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    height: 2rem;
+    min-width: 2rem;
+    cursor: pointer;
+  }
+  .inactiveNextButton:focus {
+    outline: 0;
   }
 }

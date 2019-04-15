@@ -36,34 +36,76 @@ const ReviewPaginate = props => {
   let pagination = [];
   for (let i = 0; i < pages.length; i++) {
     if (i > 0 && pages[i] - pages[i - 1] > 1) {
-      pagination.push(<span>...</span>);
+      pagination.push(<span className={styles.ellipsis}>...</span>);
     }
-    pagination.push(
-      <button
-        type="button"
-        className={styles.pageButton}
-        onClick={() => handlePageClick(pages[i])}
-      >
-        {pages[i]}
-      </button>
-    );
+    if (pages[i] === currentPage) {
+      pagination.push(
+        <button
+          type="button"
+          className={styles.currentPageButton}
+          onClick={() => handlePageClick(pages[i])}
+        >
+          {pages[i]}
+        </button>
+      );
+    } else {
+      pagination.push(
+        <button
+          type="button"
+          className={styles.pageButton}
+          onClick={() => handlePageClick(pages[i])}
+        >
+          {pages[i]}
+        </button>
+      );
+    }
   }
-
-  return (
-    <div className={styles.paginationContainer}>
+  let prevButton;
+  if (currentPage > 1) {
+    prevButton = (
       <button
         className={styles.prevButton}
         onClick={() => handlePageClick(currentPage - 1)}
       >
         {'<'}
       </button>
-      <span className={styles.pages}>{pagination}</span>
+    );
+  } else {
+    prevButton = (
+      <button
+        className={styles.inactivePrevButton}
+        onClick={() => handlePageClick(currentPage - 1)}
+      >
+        {'<'}
+      </button>
+    );
+  }
+  let nextButton;
+  if (currentPage < pageCount) {
+    nextButton = (
       <button
         className={styles.nextButton}
         onClick={() => handlePageClick(currentPage + 1)}
       >
         {'>'}
       </button>
+    );
+  } else {
+    nextButton = (
+      <button
+        className={styles.inactiveNextButton}
+        onClick={() => handlePageClick(currentPage + 1)}
+      >
+        {'>'}
+      </button>
+    );
+  }
+
+  return (
+    <div className={styles.paginationContainer}>
+      {prevButton}
+      <div className={styles.pages}>{pagination}</div>
+      {nextButton}
     </div>
   );
 };
