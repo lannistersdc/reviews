@@ -27,6 +27,10 @@ export default class TodoList extends React.Component {
       currentPage: 1
     };
     this.getReviewPage = this.getReviewPage.bind(this);
+    this.handleSort = this.handleSort.bind(this);
+    this.sortByNewest = this.sortByNewest.bind(this);
+    this.sortByRatingsTop = this.sortByRatingsTop.bind(this);
+    this.sortByRatingsBottom = this.sortByRatingsBottom.bind(this);
   }
 
   componentDidMount() {
@@ -124,6 +128,59 @@ export default class TodoList extends React.Component {
       someReviews,
       currentPage
     });
+  }
+
+  handleSort(event) {
+    let sort = event.target.value;
+    console.log(sort);
+    switch (parseInt(sort)) {
+      case 1:
+        console.log('new');
+        this.sortByNewest();
+        break;
+      case 2:
+        console.log('top');
+        this.sortByRatingsTop();
+        break;
+      case 3:
+        console.log('bot');
+        this.sortByRatingsBottom();
+        break;
+    }
+  }
+
+  sortByNewest() {
+    let allReviews = this.state.allReviews;
+    console.log(allReviews);
+    allReviews = allReviews.sort((a, b) =>
+      a.date < b.date ? 1 : b.date < a.date ? -1 : 0
+    );
+    this.setState({
+      allReviews
+    });
+    this.getReviewPage(1);
+  }
+
+  sortByRatingsTop() {
+    let allReviews = this.state.allReviews;
+    allReviews = allReviews.sort((a, b) =>
+      a.overall < b.overall ? 1 : b.overall < a.overall ? -1 : 0
+    );
+    this.setState({
+      allReviews
+    });
+    this.getReviewPage(1);
+  }
+
+  sortByRatingsBottom() {
+    let allReviews = this.state.allReviews;
+    allReviews = allReviews.sort((a, b) =>
+      a.overall > b.overall ? 1 : b.overall > a.overall ? -1 : 0
+    );
+    this.setState({
+      allReviews
+    });
+    this.getReviewPage(1);
   }
 
   render() {
@@ -309,6 +366,12 @@ export default class TodoList extends React.Component {
             </div>
           </div>
         </div>
+        <div className="sortBy">Sort By</div>
+        <select className="sorter" onChange={this.handleSort}>
+          <option value="1">Newest</option>
+          <option value="2">Highest Rating</option>
+          <option value="3">Lowest Rating</option>
+        </select>
         <div className="reviewList">
           {this.state.someReviews.map((review, index) => (
             <ReviewListEntry key={index} review={review} />

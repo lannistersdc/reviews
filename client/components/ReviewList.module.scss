@@ -220,4 +220,20 @@
       cursor: pointer;
     }
   }
+  .sortBy {
+    .sorter {
+      width: 18rem;
+      margin: 0.5rem 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0.25rem;
+      font-size: 0.875rem;
+      border-radius: 2px;
+      border: 1px solid #d8d9db;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+  }
 }
