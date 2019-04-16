@@ -193,11 +193,14 @@
   }
   .awardsContainer {
     display: flex;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #d8d9db;
     .award {
       display: flex;
       border: 1px solid #d8d9db;
       padding: 12px;
       margin: 8px;
+      margin-bottom: 2rem;
       .awardNameAndLocation {
         margin-left: 1rem;
         .awardName {
@@ -220,20 +223,35 @@
       cursor: pointer;
     }
   }
+  .sorter {
+    font-family: BrandonText, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    width: 18rem;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0.25rem;
+    font-size: 0.875rem;
+    border-radius: 2px;
+    border: 1px solid #d8d9db;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
   .sortBy {
-    .sorter {
-      width: 18rem;
-      margin: 0.5rem 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 6px 0.25rem;
-      font-size: 0.875rem;
-      border-radius: 2px;
-      border: 1px solid #d8d9db;
-      box-sizing: border-box;
-      cursor: pointer;
-    }
+    margin-top: 1rem;
+  }
+  .sorter:hover {
+    border: 2px solid #da3743;
+    margin: 7px 0;
+    padding: 6px 3px;
+  }
+  .sorter:focus {
+    outline: none;
   }
 }

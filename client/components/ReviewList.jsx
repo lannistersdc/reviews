@@ -366,8 +366,8 @@ export default class TodoList extends React.Component {
             </div>
           </div>
         </div>
-        <div className="sortBy">Sort By</div>
-        <select className="sorter" onChange={this.handleSort}>
+        <div className={styles.sortBy}>Sort By</div>
+        <select className={styles.sorter} onChange={this.handleSort}>
           <option value="1">Newest</option>
           <option value="2">Highest Rating</option>
           <option value="3">Lowest Rating</option>
