@@ -9,7 +9,7 @@
   "scripts": {
     "start": "nodemon ./server/server.js",
     "test": "mocha test",
-    "build": "webpack -d --watch",
+    "build": "webpack -d",
     "seed": "node ./database/seed.js"
   },
   "license": "UNLICENSED",
