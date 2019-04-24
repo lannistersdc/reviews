@@ -1,9 +1,9 @@
-import React from 'react';
-import axios from 'axios';
-import styles from './ReviewList.module.scss';
+import React from "react";
+import axios from "axios";
+import styles from "./ReviewList.module.scss";
 
-import ReviewListEntry from './ReviewListEntry.jsx';
-import ReviewPaginate from './ReviewPaginate.jsx';
+import ReviewListEntry from "./ReviewListEntry.jsx";
+import ReviewPaginate from "./ReviewPaginate.jsx";
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export default class TodoList extends React.Component {
 
   componentDidMount() {
     axios
-      .get(`/api/restaurant/${Math.floor(Math.random() * 100) + 1}`)
+      .get(`/api/restaurant/${Math.floor(Math.random() * 1e7) + 1}`)
       .then(response => {
         this.setState({
           allReviews: response.data
@@ -55,7 +55,7 @@ export default class TodoList extends React.Component {
         let ambienceAvg = 0;
         let valueAvg = 0;
         let recommendAvg = 0;
-        let pageCount = Math.ceil(reviewCount / 40);
+        let pageCount = Math.ceil(reviewCount / 10);
         for (let i = 0; i < allReviews.length; i++) {
           overallAvg += allReviews[i].overall;
           switch (allReviews[i].overall) {
@@ -116,8 +116,8 @@ export default class TodoList extends React.Component {
 
   getReviewPage(currentPage) {
     let someReviews = [];
-    let maxIndex = currentPage * 40;
-    let minIndex = maxIndex - 40;
+    let maxIndex = currentPage * 10;
+    let minIndex = maxIndex - 10;
     for (let i = minIndex; i < maxIndex; i++) {
       if (!this.state.allReviews[i]) {
         break;
@@ -135,15 +135,15 @@ export default class TodoList extends React.Component {
     console.log(sort);
     switch (parseInt(sort)) {
       case 1:
-        console.log('new');
+        console.log("new");
         this.sortByNewest();
         break;
       case 2:
-        console.log('top');
+        console.log("top");
         this.sortByRatingsTop();
         break;
       case 3:
-        console.log('bot');
+        console.log("bot");
         this.sortByRatingsBottom();
         break;
     }
@@ -255,13 +255,13 @@ export default class TodoList extends React.Component {
                 src="https://s3-us-west-1.amazonaws.com/review-icons/noiseMeter.png"
                 height="16px"
                 width="auto"
-              />{' '}
-              <a>Noise</a>{' '}
+              />{" "}
+              <a>Noise</a>{" "}
               <img
                 src="https://s3-us-west-1.amazonaws.com/review-icons/blackDot.png"
                 height="2px"
                 width="auto"
-              />{' '}
+              />{" "}
               moderate
             </div>
             <div className={styles.recommend}>
@@ -269,7 +269,7 @@ export default class TodoList extends React.Component {
                 src="https://s3-us-west-1.amazonaws.com/review-icons/thumbsUp.png"
                 height="18px"
                 width="auto"
-              />{' '}
+              />{" "}
               <a>{this.state.recommendAvg}% of people</a> would recommend it to
               a friend
             </div>
@@ -333,7 +333,7 @@ export default class TodoList extends React.Component {
           </div>
         </div>
         <div className={styles.lovedFor}>
-          Loved For{' '}
+          Loved For{" "}
           <img
             src="https://s3-us-west-1.amazonaws.com/review-icons/infoIcon.png"
             height="20px"

@@ -1,12 +1,10 @@
-// const mongoose = require("mongoose");
-// const Review = require("./index.js");
+const mongoose = require("mongoose");
+const Review = require("./index.js");
 const fs = require("fs");
 // const {
 //   Readable
 // } = require("stream");
 const file = fs.createWriteStream("./seed.csv");
-
-let seedData = [];
 
 var randomElement = array => {
   var randomIndex = Math.floor(Math.random() * array.length);
@@ -228,14 +226,15 @@ var tags = [
   ""
 ];
 
-var id = 1;
+id = 1;
 
-const oneReview = () => {
+const oneReview = (num) => {
   let reviewCount = Math.floor(Math.random() * 500) + 1;
   let skew = Math.random() * 1.464973;
   for (let j = 0; j < reviewCount; j++) {
     let review = {
-      restaurantID: 0,
+      id: id,
+      restaurantID: num,
       username: "",
       location: "",
       vip: false,
@@ -250,7 +249,6 @@ const oneReview = () => {
       text: ""
     };
 
-    review.restaurantID = id;
     id++;
 
     review.username = [randomElement(firstName), randomElement(lastName)].join(
@@ -286,17 +284,11 @@ const oneReview = () => {
       }
     }
 
-    review.text = [
-      randomElement(opening),
-      randomElement(verbs),
-      randomElement(objects),
-      randomElement(nouns),
-      randomElement(tags)
-    ].join(" ");
-
-    if (review.text.charAt(0) === " ") {
-      review.text.slice(1, review.text.length);
-    }
+    review.text = `"${randomElement(opening)} ${randomElement(
+      verbs
+    )} ${randomElement(objects)} ${randomElement(nouns)} ${randomElement(
+      tags
+    )}"`;
 
     return review;
   }
@@ -304,26 +296,35 @@ const oneReview = () => {
 
 function streamFunc(writer, data, encoding, callback) {
   let x = 1e7;
+  let max = (Math.floor(Math.random() * 19) + 1);
   write();
 
   function write() {
     let ok = true;
     do {
-      if (x % 100000 === 0) {
-        console.log(x + ' items remaining.');
+      if (x % 1e6 === 0) {
+        console.log(x + " restaurants remaining.");
       }
       if (x === 1e7) {
-        writer.write('restaurantID, username, location, vip, totalReviews, overall, food, service, ambience, value, recommend, date, text\n')
+        x--;
+        writer.write(
+          "id,restaurantID,username,location,vip,totalReviews,overall,food,service,ambience,value,recommend,date,text\n"
+        );
       }
-      x--;
+      if (max === 0) {
+        x--;
+        max = (Math.floor(Math.random() * 19) + 1);
+      } else {
+        max--;
+      }
       if (x === 0) {
         // last time!
-        var str = Object.values(oneReview()).join(',');
+        var str = Object.values(oneReview(x + 1)).join(",");
         writer.write(str, encoding, callback);
       } else {
         // See if we should continue, or wait.
         // Don't pass the callback, because we're not done yet.
-        var str = Object.values(oneReview()).join(',') + '\n';
+        var str = Object.values(oneReview(x + 1)).join(",") + "\n";
         ok = writer.write(str, encoding);
       }
     } while (x > 0 && ok);
@@ -336,3 +337,8 @@ function streamFunc(writer, data, encoding, callback) {
 }
 
 streamFunc(file);
+
+// var temp = oneReview(29)
+// delete temp.id;
+// console.log(temp)
+mongoose.connection.close()

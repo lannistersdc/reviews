@@ -3,10 +3,14 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect('mongodb://localhost/review', { useNewUrlParser: true })
+  .connect('mongodb://localhost/review', {
+    useNewUrlParser: true
+  })
   .then(() => console.log('Connected to mongoDB'));
 
+
 const reviewSchema = mongoose.Schema({
+  id: Number,
   restaurantID: Number,
   username: String,
   location: String,
