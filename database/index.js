@@ -22,6 +22,7 @@ const reviewSchema = mongoose.Schema({
   ambience: Number,
   value: Number,
   recommend: Boolean,
+  //date references when the review was created
   date: Date,
   text: String
 });
