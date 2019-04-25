@@ -42,7 +42,14 @@ const controller = {
       .catch(err => res.status(404).send(err))
   },
   delete: (req, res) => {
-    res.send('yo mama')
+    Review
+      .findOneAndDelete({
+        id: req.body.id
+      })
+      .then(data => {
+        res.status(201).send(data)
+      })
+      .catch(err => res.status(404).send(err))
   }
 };
 
