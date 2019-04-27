@@ -1,0 +1,12 @@
+config:
+  target: "http://localhost:3004"
+  phases:
+    - duration: 30
+      arrivalRate: 500
+      # rampTo: 400
+    # - duration: 20
+    #   arrivalRate: 400
+scenarios:
+  - flow:
+      - get:
+          url: "/api/restaurant/{{$randomNumber(1,1000000)}}"

@@ -2,6 +2,7 @@
   "name": "opentable_reviews",
   "description": "OpenTable Reviews",
   "author": "Jeff Jardine",
+  "engineStrict": true,
   "engines": {
     "node": ">=6.13.0"
   },
@@ -30,10 +31,12 @@
   },
   "dependencies": {
     "acorn": "^6.1.1",
+    "artillery": "^1.6.0-27",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "css-loader": "^2.1.1",
     "express": "^4.16.4",
+    "loadtest": "^3.0.7",
     "moment": "^2.24.0",
     "mongoose": "^5.4.19",
     "mongoose-sequence": "^5.0.1",

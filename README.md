@@ -18,8 +18,14 @@
 
 > npm install
 > npm run seed
+> npm run mongo
 > npm run build
 > npm start
+
+\i '/Users/adamreback/Documents/Hack/SDC/reviews/database/setup.sql'
+CREATE INDEX restid on reviews USING hash (restaurantID);
+
+db.reviews.ensureIndex({'restaurantID':'hashed'})
 
 ## Requirements
 
