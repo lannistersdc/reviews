@@ -338,7 +338,4 @@ function streamFunc(writer, data, encoding, callback) {
 
 streamFunc(file);
 
-// var temp = oneReview(29)
-// delete temp.id;
-// console.log(temp)
-mongoose.connection.close()
+mongoose.connection.close();
