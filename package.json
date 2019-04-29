@@ -42,13 +42,10 @@
     "mongoose-sequence": "^5.0.1",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.10",
-    "pg": "^7.10.0",
-    "pg-hstore": "^2.3.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-overflow-scrolling": "^1.0.0",
     "react-paginate": "^6.3.0",
-    "sequelize": "^5.7.4",
     "style-loader": "^0.23.1",
     "webpack-combine-loaders": "^2.0.4"
   }
