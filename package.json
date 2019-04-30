@@ -12,7 +12,7 @@
     "test": "mocha test",
     "build": "webpack -d",
     "seed": "node ./database/seed.js",
-    "mongo": "mongoimport -d review -c reviews --type csv --file seed.csv --headerline"
+    "mongo": "mongoimport -h 3.16.129.244 -u adam -p killme -d review -c reviews -j 1 --type csv --file seed.csv --headerline"
   },
   "license": "UNLICENSED",
   "repository": "https://github.com/hrla28-open-table-app/reviews",
