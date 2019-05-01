@@ -295,7 +295,7 @@ const oneReview = (num) => {
 };
 
 function streamFunc(writer, data, encoding, callback) {
-  let x = 10;
+  let x = 1e7;
   let max = (Math.floor(Math.random() * 19) + 1);
   write();
 
@@ -305,7 +305,7 @@ function streamFunc(writer, data, encoding, callback) {
       if (x % 1e6 === 0) {
         console.log(x + " restaurants remaining.");
       }
-      if (x === 10) {
+      if (x === 1e7) {
         x--;
         writer.write(
           "id,restaurantID,username,location,vip,totalReviews,overall,food,service,ambience,value,recommend,date,text\n"

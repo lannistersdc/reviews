@@ -6,12 +6,12 @@ mongoose
   .connect('mongodb://adam:killme@3.16.129.244/review', {
     useNewUrlParser: true
   })
-  .then(() => console.log('Connected to mongoDB'));
-
+  .then(() => console.log('Connected to mongoDB'))
+  .catch(err => console.error(err));
 
 const reviewSchema = mongoose.Schema({
-  id: Number,
-  restaurantID: Number,
+  id: {type: Number, index: true},
+  restaurantID: {type: Number, index: true},
   username: String,
   location: String,
   vip: Boolean,
