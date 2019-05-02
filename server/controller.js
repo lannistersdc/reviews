@@ -6,6 +6,9 @@ const controller = {
     Review.find({
         restaurantID: _id
       })
+      .sort({
+        id: -1
+      })
       .then(docs => res.status(200).send(docs))
       .catch(err => res.status(404).send(err));
   },

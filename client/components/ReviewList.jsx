@@ -37,7 +37,6 @@ export default class TodoList extends React.Component {
     axios
       .get(`/api/restaurant/${Math.floor(Math.random() * 1e7) + 1}`)
       .then(response => {
-        //TODO: Sort by id decrementing
         this.setState({
           allReviews: response.data
         });
