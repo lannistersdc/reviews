@@ -7,7 +7,7 @@ const controller = {
         restaurantID: _id
       })
       .sort({
-        date: -1
+        id: -1
       })
       .then(docs => res.status(200).send(docs))
       .catch(err => res.status(404).send(err));
