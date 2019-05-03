@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../public/')));
 app.use('/api', router);
-app.use('/loaderio-03e37b918490f85b4d7fbbf7aa20b6b7', (req, res) => {
-    res.status(200).send('loaderio-03e37b918490f85b4d7fbbf7aa20b6b7');
+app.use('/loaderio-15f05c247bd03ea8ccfe1fdc545eea5f', (req, res) => {
+    res.status(200).send('loaderio-15f05c247bd03ea8ccfe1fdc545eea5f');
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
