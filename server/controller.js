@@ -6,6 +6,7 @@ const controller = {
     Review.find({
         restaurantID: _id
       })
+      .lean()
       .sort({
         id: -1
       })
